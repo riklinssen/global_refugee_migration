@@ -218,8 +218,10 @@ requirements.txt
 #data & graph folders (keep structure, not files in src) 
 src/graphs/*
 !src/graphs/.keep
-src/data/*/*
-!src/data/*/.keep
+src/data/*
+!src/data/do/.keep
+
+src/data/xls
 
 src/manuscript/*
 !src/manuscript/.keep
