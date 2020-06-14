@@ -194,4 +194,35 @@ $RECYCLE.BIN/
 # End of https://www.toptal.com/developers/gitignore/api/windows,visualstudiocode,python,venv,virtualenv
 
 # Custom rules (everything added below won't be overriden by 'Generate .gitignore File' if you use 'Update' option)
+#original files
+other
+#data files
+src\data\*
+!src\data\.keep
 
+
+src\data\xls\*
+!src\data\xls\.keep
+src\data\dta\*
+!src\data\dta\.keep
+
+
+
+#vscode
+.vscode/
+requirements.txt
+
+#other stuff in my folders
+
+
+#data & graph folders (keep structure, not files in src) 
+src/graphs/*
+!src/graphs/.keep
+src/data/*/*
+!src/data/*/.keep
+
+src/manuscript/*
+!src/manuscript/.keep
+
+src/manuscript/graphs/*
+!src/manuscript/graphs/.keep
