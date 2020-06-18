@@ -45,7 +45,7 @@ data['p_totaldisplaced']=data['totaldisplaced']/data['worldpop']
 colors=['#e41a1c','#377eb8','#4daf4a']
 labels=["Total displaced", "IDPs", "Refugees"]
 
-sns.set_context('notebook')
+sns.set_context('paper')
 plt.style.use('seaborn-ticks')
 
 totallist=['totaldisplaced','idps', 'refugees' ]
@@ -56,7 +56,7 @@ ax1.plot(data.index, data['totaldisplaced'], color='#e41a1c', linestyle='solid')
 ax1.plot(data.index, data['idps'], color='#377eb8', linestyle='dashed')
 #refugees
 ax1.plot(data.index, data['refugees'], color='#4daf4a', linestyle='dotted')
-ax1.set_title("Absolute numbers (in millions)")
+ax1.set_title("Absolute numbers (in millions)", loc='left')
 #bootm axes
 #total displaced
 ax2.plot(data.index, data['p_totaldisplaced'], color='#e41a1c', linestyle='solid')
@@ -64,7 +64,7 @@ ax2.plot(data.index, data['p_totaldisplaced'], color='#e41a1c', linestyle='solid
 ax2.plot(data.index, data['p_idps'], color='#377eb8', linestyle='dashed')
 #refugees
 ax2.plot(data.index, data['p_refugees'], color='#4daf4a', linestyle='dotted')
-ax2.set_title("Relative to the world population (%)")
+ax2.set_title("Relative to the world population (%)", loc='left')
 
 
 #annotations/legend
