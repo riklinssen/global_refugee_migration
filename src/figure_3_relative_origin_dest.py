@@ -34,7 +34,7 @@ labels = ['all countries', 'fixed set\nof countries']
 colors = ['#e41a1c', 'grey']
 colors2 = ['blue', 'grey']
 
-fig, ax = plt.subplots(nrows=2, ncols=1, sharex='col', sharey='row')
+fig, ax = plt.subplots(nrows=1, ncols=1, sharex='col', sharey='row')
 axs = fig.axes
 # title
 ax[0].set_title(
