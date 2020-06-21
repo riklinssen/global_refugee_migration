@@ -34,27 +34,27 @@ labels = ['all countries', 'fixed set\nof countries']
 colors = ['#e41a1c', 'grey']
 colors2 = ['blue', 'grey']
 
-fig, ax = plt.subplots(nrows=1, ncols=1, sharex='col', sharey='row')
+fig, ax = plt.subplots(nrows=2, ncols=1, sharex='col', sharey='row')
 axs = fig.axes
 # title
-ax[0].set_title(
+axs[0].set_title(
     'Refugees as a percentage of origin country population', loc='left')
-ax[0].plot(data.index, data['p_origin'], color='#e41a1c', linestyle='solid')
-ax[0].plot(data.index, data['p_origin_fixed'],
+axs[0].plot(data.index, data['p_origin'], color='#e41a1c', linestyle='solid')
+axs[0].plot(data.index, data['p_origin_fixed'],
            color='grey', linestyle='dotted')
 
-ax[1].set_title(
+axs[1].set_title(
     'Refugees as a percentage of residence country population', loc='left')
-ax[1].plot(data.index, data['p_residence'], color='blue', linestyle='dashed')
-ax[1].plot(data.index, data['p_residence_fixed'],
+axs[1].plot(data.index, data['p_residence'], color='blue', linestyle='dashed')
+axs[1].plot(data.index, data['p_residence_fixed'],
            color='grey', linestyle='dotted')
 
 # annotations/legend
 maxyear = data.index.max()
 for (c, kleur, lab) in zip(['p_origin', 'p_origin_fixed'], colors, labels):
-    ax[0].text(x=maxyear + 1, y=data.at[maxyear, c], s=lab, color=kleur)
+    axs[0].text(x=maxyear + 1, y=data.at[maxyear, c], s=lab, color=kleur)
 for (c, kleur, lab) in zip(['p_residence', 'p_residence_fixed'], colors2, labels):
-    ax[1].text(x=maxyear + 1, y=data.at[maxyear, c], s=lab, color=kleur)
+    axs[1].text(x=maxyear + 1, y=data.at[maxyear, c], s=lab, color=kleur)
 
 
 for ax in axs:
