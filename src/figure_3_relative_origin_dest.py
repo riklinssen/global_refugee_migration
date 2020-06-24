@@ -34,7 +34,7 @@ labels = ['all countries', 'fixed set\nof countries']
 colors = ['#e41a1c', 'grey']
 colors2 = ['blue', 'grey']
 
-fig, ax = plt.subplots(nrows=2, ncols=1, sharex='col', sharey='row')
+fig, ax = plt.subplots(nrows=2, ncols=1, sharex='col')
 axs = fig.axes
 # title
 axs[0].set_title(
@@ -42,19 +42,19 @@ axs[0].set_title(
 axs[0].plot(data.index, data['p_origin'], color='#e41a1c', linestyle='solid')
 axs[0].plot(data.index, data['p_origin_fixed'],
            color='grey', linestyle='dotted')
+maxyear = data.index.max()
+for (c, kleur, lab) in zip(['p_origin', 'p_origin_fixed'], colors, labels):
+    axs[0].text(x=maxyear, y=data.at[maxyear, c], s=lab, color=kleur)
 
 axs[1].set_title(
     'Refugees as a percentage of residence country population', loc='left')
 axs[1].plot(data.index, data['p_residence'], color='blue', linestyle='dashed')
 axs[1].plot(data.index, data['p_residence_fixed'],
            color='grey', linestyle='dotted')
-
-# annotations/legend
-maxyear = data.index.max()
-for (c, kleur, lab) in zip(['p_origin', 'p_origin_fixed'], colors, labels):
-    axs[0].text(x=maxyear + 1, y=data.at[maxyear, c], s=lab, color=kleur)
 for (c, kleur, lab) in zip(['p_residence', 'p_residence_fixed'], colors2, labels):
-    axs[1].text(x=maxyear + 1, y=data.at[maxyear, c], s=lab, color=kleur)
+    axs[1].text(x=maxyear, y=data.at[maxyear, c], s=lab, color=kleur)
+
+
 
 
 for ax in axs:
@@ -62,9 +62,9 @@ for ax in axs:
 
 
 # range in years.
-xranger = list(range(1980, 2015, 5))
+xranger = list(range(1980, 2016, 5))
 xranger[0] = 1980
-xranger = xranger+[2016]
+xranger = xranger+[2018]
 
 for ax in fig.axes:
     ax.grid(which='major', axis='y', linestyle=':')
@@ -82,6 +82,6 @@ plt.figtext(x=0, y=0, s="Source: UNHCR population statistics database, authorsâ€
 
 # save
 plt.savefig(graphs/"Fig3_Ref_relative_origin_residence.svg",
-            transparent=True, bbox_inches='tight', pad_inches=0)
+            transparent=True, bbox_inches='tight')
 
 plt.show()
