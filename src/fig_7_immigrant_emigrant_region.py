@@ -7,6 +7,8 @@ from funcs import reformat_large_tick_values
 import matplotlib.ticker as tick
 from dateutil.relativedelta import relativedelta
 import matplotlib as mpl
+
+mpl.rc_file_defaults()
 # paths
 root = Path.cwd()
 dta = root/"data/dta"
@@ -40,8 +42,8 @@ bottom, height = .25, .5
 right = left + width
 top = bottom + height
 
-sns.set_style('whitegrid')
 
+sns.set_context('paper')
 fig, axs=plt.subplots(nrows=15, ncols=1, sharex='col', sharey='row', gridspec_kw={'hspace':0, 'wspace':0}, figsize=(9,6))
 
 #emigration
@@ -74,13 +76,13 @@ for ax in fig.axes:
     ax.spines['top'].set_visible(False)
     ax.spines['right'].set_visible(False)
     ax.spines['bottom'].set_visible(False)
-    ax.grid(True)
-
 #bottom time-axis
 axs[-1].xaxis.set_visible(True)
 axs[-1].spines['bottom'].set_visible(True)
 axs[-1].tick_params(axis='x', length=2, labelsize='large')
 
+plt.savefig(graphs/"Figx_immi_emi_absolute_mirrored.svg",
+            transparent=True, bbox_inches='tight')
 
     
 
