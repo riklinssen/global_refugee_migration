@@ -12,10 +12,9 @@ dta = root/"data/dta"
 graphs = root/"manuscript/graphs"
 
 
-glob_overview = pd.read_stata(dta/"global overview.dta")
+glob_overview = pd.read_stata(dta/"Global statistics with early IDP statistics.dta")
 
-data = glob_overview.loc[:, ['Year', 'Refugees',
-                             'IDPs', 'Totaldisplaced', 'Worldpop']]
+data = glob_overview
 # lowercase
 data.columns = [c.lower() for c in data.columns]
 # make a datetime index
@@ -32,12 +31,12 @@ data = data.drop(columns='yr')
 
 
 # in percentages
-data['p_refugees'] = data['refugees']/data['worldpop']
-data['p_idps'] = data['idps']/data['worldpop']
-data['p_totaldisplaced'] = data['totaldisplaced']/data['worldpop']
+data['p_refugees'] = data['refugeesworldpop']/100
+data['p_idps'] = data['idpsworldpop']/100
+data['p_totaldisplaced'] = data['totaldisplacedworldpop']/100
 
 ###################PLOT#############################
-
+sns.set_context('paper')
 # figure 1 Global displacement: 1951 - 2018 (absolute numbers, in millions)
 # colormap photocopy safe
 colors = ['#e41a1c', '#377eb8', '#4daf4a']
@@ -93,10 +92,10 @@ for ax in fig.axes:
 
 sns.despine()
 plt.subplots_adjust(hspace=0.3)
-fig.suptitle('Global displacement: 1951 - 2018', y=1.05, x=0.25)
+fig.suptitle('Global displacement: 1951 - 2018', y=1.05, x=0.3)
 
 # footnotes
-plt.figtext(x=0, y=-0.1, s="Source: UNHCR population statistics database, authors’ calculations.\nData for IDPs cover 1993 to 2018",
+plt.figtext(x=0.1, y=-0.1, s="Source: UNHCR population statistics database, authors’ calculations.\nData for IDPs cover 1969 to 2018",
             fontsize='small', fontstyle='italic', fontweight='light', color='gray')
 
 # save
